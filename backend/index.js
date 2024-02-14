@@ -1,10 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-require('dotenv').config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 8000;
 
 const cors = require('cors');
 
@@ -15,7 +14,7 @@ app.use(cors());
 
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect("mongodb+srv://admin:Km6MuqgzRcRpSH2@cluster0-1.hhmuw56.mongodb.net/")
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err));
 

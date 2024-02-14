@@ -73,7 +73,7 @@ export function AddLiquidity() {
         })
 
         console.log("Calling axios api for address: ", address, " and hash: ", hash)
-        axios.post('backend-9mx4bse6m-aryan-godaras-projects.vercel.app/api/transactions', {
+        axios.post('backend-9t8xlk89i-aryan-godaras-projects.vercel.app/api/transactions', {
         walletAddress: address,
         transactionDetails: {
             transactionType: 'addLiquidity',
