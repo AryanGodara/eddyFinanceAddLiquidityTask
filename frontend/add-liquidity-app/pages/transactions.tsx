@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 
 
 const TransactionsPage = () => {
-    const [transactions, setTransactions] = useState([]);
+    const [transactions, setTransactions] = useState<{ walletId: string, transactionDetails: { transactionType: string, usdcAmount: number, usdtAmount: number } }[]>([]);
     const account = useAccount();
     const address = account.address ? account.address.substring(2) : '';
 
