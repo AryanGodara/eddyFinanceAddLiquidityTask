@@ -81,6 +81,9 @@ export function AddLiquidity() {
             usdcAmount: usdcAmount,
             usdtAmount: usdtAmount,
         },
+        headers: {
+                'Content-Type': 'application/json'
+        }
         })
         .then(response => console.log("Got response from server: ", response.data))
         .catch(error => console.error(error));
