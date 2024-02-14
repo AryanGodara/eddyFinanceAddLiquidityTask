@@ -14,7 +14,7 @@ const TransactionsPage = () => {
 
     useEffect(() => {
         if (address) {
-          axios.get(`http://localhost:8000/api/transactions/${address}`)
+          axios.get(`backend-9mx4bse6m-aryan-godaras-projects.vercel.app/api/transactions/${address}`)
             .then(response => {
                 setTransactions(response.data);
             })

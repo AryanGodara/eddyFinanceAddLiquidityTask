@@ -53,7 +53,7 @@ export function AddLiquidity() {
             useWaitForTransactionReceipt({ 
             hash, 
         })
-    
+
     const tokenAAddress = "0x74085680B0b54bdAc9Fb2D4Ebe88a21105267a08";
     const tokenBAddress = "0x52837080D4F395342711907DD58ef6B61a0A93Eb";
 
@@ -64,10 +64,6 @@ export function AddLiquidity() {
         const usdtAmount = formData.get('usdtAmount') as string + '000000000000000000';
         const address = account.address ? account.address.substring(2) : '';
 
-        
-
-        
-
         console.log("Sending Transaction")
         writeContract({ 
             address: contractAddress, 
@@ -77,7 +73,7 @@ export function AddLiquidity() {
         })
 
         console.log("Calling axios api for address: ", address, " and hash: ", hash)
-        axios.post('http://localhost:8000/api/transactions', {
+        axios.post('backend-9mx4bse6m-aryan-godaras-projects.vercel.app/api/transactions', {
         walletAddress: address,
         transactionDetails: {
             transactionType: 'addLiquidity',
