@@ -36,7 +36,7 @@ app.post('/api/transactions', async (req, res) => {
     return res.status(400).send('walletAddress is required');
   }
   try {
-    const transaction = new Transaction({ walletAddress, transactionDetails });
+    const transaction = new Transaction({ walletAddress, transactionDetails, createdAt: Date.now()});
     await transaction.save();
     console.log('Transaction saved successfully: ', transaction);
     res.status(201).send(transaction);

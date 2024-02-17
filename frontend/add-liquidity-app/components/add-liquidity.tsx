@@ -67,7 +67,10 @@ export function AddLiquidity() {
         const formData = new FormData(e.target as HTMLFormElement) 
         const usdcAmount = (formData.get('usdcAmount') as string) + '000000000000000000';
         const usdtAmount = formData.get('usdtAmount') as string + '000000000000000000';
+        const slippage = formData.get('slippage') as string;
         const address = account.address ? account.address.substring(2) : '';
+        const usdcAmountMin = (BigInt(100)-BigInt(slippage))*BigInt(usdcAmount)/BigInt(100);
+        const usdtAmountMin = (BigInt(100)-BigInt(slippage))*BigInt(usdtAmount)/BigInt(100);
 
         // // Check allowance for tokenA
         // const tokenAAllowance = await readContract(client, {
@@ -140,7 +143,7 @@ export function AddLiquidity() {
                 address: contractAddress, 
                 abi, 
                 functionName: 'addLiquidity', 
-                args: [tokenAAddress, tokenBAddress, BigInt(usdcAmount), BigInt(usdtAmount), BigInt(0), BigInt(0), `0x${address}`, BigInt(Math.floor(Date.now() / 1000) + 60 * 10)]
+                args: [tokenAAddress, tokenBAddress, BigInt(usdcAmount), BigInt(usdtAmount), usdcAmountMin, usdtAmountMin, `0x${address}`, BigInt(Math.floor(Date.now() / 1000) + 60 * 10)]
             });
             const liquidityTxReceipt = await waitForTxReceipt(client, {hash: addLiquidityResponse});
     
@@ -195,6 +198,15 @@ export function AddLiquidity() {
                     onChange={(e) => setUsdtAmount(e.target.value)}
                     placeholder="USDT Amount" 
                     required 
+                />
+                <input
+                    className={styles.inputField}
+                    name="slippage"
+                    placeholder="Slippage (0-100)"
+                    type="number"
+                    min={0}
+                    max={100}
+                    required
                 />
             </div>
 
