@@ -24,6 +24,8 @@
     "deployUniswapV2Factory": "ts-node ./UniswapV2Factory/index.ts",
     "runUniswapFactory": "ts-node ./UniswapV2Factory/index.ts",
     "initCodePairHash": "ts-node ./sepoliaDex/initCodePairHash.ts",
+    
+    "deployWrapper": "ts-node ./EddyWrapper/index.ts",
 
     "runRouter": "ts-node ./UniswapV2Router02/index.ts"
   },

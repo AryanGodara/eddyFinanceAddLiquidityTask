@@ -142,7 +142,7 @@ export function AddLiquidity() {
             const addLiquidityResponse = await writeContractAsync({ 
                 address: contractAddress, 
                 abi, 
-                functionName: 'addLiquidity', 
+                functionName: 'addLiquidityEddy', 
                 args: [tokenAAddress, tokenBAddress, BigInt(usdcAmount), BigInt(usdtAmount), usdcAmountMin, usdtAmountMin, `0x${address}`, BigInt(Math.floor(Date.now() / 1000) + 60 * 10)]
             });
             const liquidityTxReceipt = await waitForTxReceipt(client, {hash: addLiquidityResponse});
@@ -199,6 +199,7 @@ export function AddLiquidity() {
                     placeholder="USDT Amount" 
                     required 
                 />
+                <b>Slippage (in percentage)</b>
                 <input
                     className={styles.inputField}
                     name="slippage"
@@ -221,7 +222,7 @@ export function AddLiquidity() {
             {addLiquidityHash && <div>Transaction Hash: {addLiquidityHash}</div>}
             {addLiquidityLoading && <div>Waiting for confirmation...</div>}
             {!addLiquidityLoading && addLiquidityHash && <div>Transaction confirmed.</div>}
-            {addLiquidityError && <div>Error: {addLiquidityError}</div>}
+            {addLiquidityError && <div>Error: {addLiquidityError.toString()}</div>}
         </form>
     )
 }
