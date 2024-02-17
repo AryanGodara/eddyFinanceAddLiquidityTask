@@ -51,6 +51,8 @@ contract EddyFinanceAddLiquidity{
         
         amountADesired -= feeAmountA;
         amountBDesired -= feeAmountB;
+        amountAMin -= feeAmountA;
+        amountBMin -= feeAmountB;
 
         // Transfer the fee to the feeTo address (contract deployer)
         require(IERC20(tokenA).transfer(_feeTo, feeAmountA), "Fee transfer for A failed");
